@@ -15,9 +15,9 @@
     </div>
 
     <!-- launch buttons -->
-    <button class="launch-conf-app" data="{site: 'siteFoo', floor: 1}">Launch App</button><br>
+    <!-- <button class="launch-conf-app" data="{site: 'siteFoo', floor: 1}">Launch App</button><br>
     <button class="launch-conf-app" data="{site: 'siteBar', floor: 2}">Launch App 2</button><br>
-    <button class="launch-conf-app" data="{site: 'siteHakuna', floor: 3}">Launch App 3</button><br>
+    <button class="launch-conf-app" data="{site: 'siteHakuna', floor: 3}">Launch App 3</button><br> -->
 
     <!-- errors -->
     <div class="conf-error" :class="{'conf-error--active': errors.length > 0}">
