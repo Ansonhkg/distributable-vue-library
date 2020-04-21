@@ -1,10 +1,23 @@
 <template>
   <div id="conf-app">
     <div class="conf-app" :class="{'conf-app--active' : appLaunched }">
-      <img alt="Vue logo" src="./assets/logo.png">
-      <HelloWorld :msg="`Here you go! :)`" />
+
+      <!-- fake loading -->
+      <div class="conf-app__loading" :class="{'conf-app__loading--false' : !launchLoading}">
+        <img width="30px;" src="./assets/loading.svg"/>
+      </div>
+      
+      <!-- result -->
+      <div class="conf-app__result" :class="{'conf-app__result--active' : !launchLoading}">
+        <img alt="Vue logo" src="./assets/logo.png">
+        <HelloWorld :msg="`Here you go! :)`" />
+      </div>
     </div>
-    <button class="launch-conf-app" data="{site: 'Mayfair', floor: 1}">Go Configure</button>
+
+    <!-- launch buttons -->
+    <button class="launch-conf-app" data="{site: 'siteFoo', floor: 1}">Launch App</button><br>
+    <button class="launch-conf-app" data="{site: 'siteBar', floor: 2}">Launch App 2</button><br>
+    <button class="launch-conf-app" data="{site: 'siteHakuna', floor: 3}">Launch App 3</button><br>
 
     <!-- errors -->
     <div class="conf-error" :class="{'conf-error--active': errors.length > 0}">
@@ -24,6 +37,7 @@ export default {
   data(){
     return {
       appLaunched: false,
+      launchLoading: false,
       launchData: {},
       // errors
       errors:[]
@@ -61,14 +75,18 @@ export default {
       // add event listeners to .launch-conf-app buttons
       [...btnsLaunchApp].forEach((btn) => {
         btn.addEventListener('click', (btn) => {
+          
+          this.launchApp();
 
           // fake loading to show brand name
+          this.launchLoading = true;
           console.log("Loading...");
 
-          // launch app after 1 second
+          // show content after 1 second
           setTimeout(() => {
+            this.launchLoading = false;
             this.launchData = btn.target.getAttribute('data');
-            this.launchApp();
+
           }, 1000);
         })
       })
@@ -87,6 +105,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
+
+/** ===== app ===== */
 .conf-app{
   text-align: center;
   position: fixed;
@@ -104,6 +124,35 @@ export default {
   opacity: 1 !important;
   pointer-events: unset;
 }
+.conf-app__loading{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: fixed;
+  top:0;
+  left: 0;
+  transition: 0.3s linear all;
+  opacity: 1;
+}
+.conf-app__loading > img{
+  margin: auto;
+}
+.conf-app__loading--false{
+  opacity: 0;
+  pointer-events: none;
+}
+.conf-app__result{
+  visibility: none;
+  opacity: 0;
+  transform: translateY(10px);
+}
+.conf-app__result--active{
+  opacity: 1;
+  transition: 0.5s linear all;
+  transform: translateY(0);
+}
+
+/** ===== errors ===== */
 .conf-error{
   position: fixed;
   bottom: 0;
