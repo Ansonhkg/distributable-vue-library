@@ -1,0 +1,1 @@
+yarn build --target lib --inline-vue --name configure --dest v/0.0.1
