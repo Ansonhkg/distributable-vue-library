@@ -1,3 +1,40 @@
+## Expected Usage
+```html
+<!--
+  ## ========== Distributable Approach ==========
+  Test it first, click "Run" at the top-left corner
+  Step1: Get the bundled .js library
+  Step2: Mount the app to a DOM element
+  Step3: Intialize .JS library settings
+  Step4: Assign click event to a `.launch-conf-app` class to launch configure app
+  eg. <div class="launch-conf-app">Go Configure</div>
+-->
+
+<!-- STEP1: Get the bundled .JS library -->
+<script src="https://unpkg.com/vue"></script>
+<script src="https://distributable.now.sh/configure.umd.min.js"></script>
+<link rel="stylesheet" href="https://distributable.now.sh/configure.css">
+
+<!-- STEP2: Mount the app to a DOM element -->
+<div id="configure-app">
+  <configure-app></configure-app>
+</div>
+
+<!-- STEP4: Assign onClick event to class .launch-conf-app to launch app. -->
+<!-- <button class="launch-conf-app" data="{site: 'Mayfair', floor: 1}">Go Configure</button> -->
+
+<!-- STEP3: Intialize .JS library settings -->
+<script>
+    const vm = new Vue({
+      components: {
+        configureApp: configure
+      }
+    }).$mount('#configure-app');
+
+    const configureApp = vm.$options.components.configureApp.methods;
+</script>
+```
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
