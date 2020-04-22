@@ -1,4 +1,4 @@
-## Expected Usage
+# Expected Usage
 ```html
 <!--
   ## ========== Distributable Approach ==========
@@ -35,6 +35,7 @@
 </script>
 ```
 
+# HTML 
 ```html
 <!DOCTYPE html>
 <html lang="en">
